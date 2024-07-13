@@ -64,38 +64,38 @@ function AddCard() {
     }
 
     const yearHandler = (e) => {
-        if (e.target.value == '00' ) {
+        if (e.target.value == '00') {
             e.target.value = ''
         }
         setyearCard(e.target.value)
     }
 
     const dateYearHandler = (e) => {
-        if (e.target.value < 10 && e.target.value.length == 1)   {
+        if (e.target.value < 10 && e.target.value.length == 1) {
             e.target.value = 0 + e.target.value
-        } else if (e.target.value > 12){
+        } else if (e.target.value > 12) {
             e.target.value = 12
-        } 
-         if (e.target.value == 0){
+        }
+        if (e.target.value == 0) {
             e.target.value = ''
         }
         setyearCard(e.target.value)
     }
 
     const monthHandler = (e) => {
-        if (e.target.value == '00' ) {
+        if (e.target.value == '00') {
             e.target.value = ''
         }
         setMounthCard(e.target.value)
     }
 
     const dateMonthHandler = (e) => {
-        if (e.target.value < 10 && e.target.value.length == 1)   {
+        if (e.target.value < 10 && e.target.value.length == 1) {
             e.target.value = 0 + e.target.value
-        } else if (e.target.value > 12){
+        } else if (e.target.value > 12) {
             e.target.value = 12
-        } 
-         if (e.target.value == 0){
+        }
+        if (e.target.value == 0) {
             e.target.value = ''
         }
         setMounthCard(e.target.value)
@@ -118,27 +118,39 @@ function AddCard() {
         imgCard: imgCard,
     }
 
-    
+    const clearInputs = (e) => {
+        e.target[0].value = ''
+        e.target[1].value = ''
+        e.target[2].value = ''
+        e.target[3].value = ''
+        e.target[4].value = ''
+        e.target[5].value = ''
+        e.preventDefault()
+    }
+
+
 
     return (
         <div className="p-10 w-9/12 h-4/5 flex flex-col justify-end">
             <IranClock />
-            <input maxLength={20} placeholder="Card Name" type="text" onChange={cardNameHandler} onKeyDown={nameHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
-            <div className="flex justify-center items-center mb-5 relative">
-                <input maxLength={16} placeholder="Card Number" type="text" onChange={valueNumberHandler} onKeyDown={cardNumberHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
-                {imgCard && <img className="rounded-full absolute right-2 w-9 border-2" src={imgCard} alt="" />}
-            </div>
-            <div className="flex justify-between items-center mb-5"><span>Cvv2 Number: </span><input onChange={cvvHandler} onKeyDown={cardNumberHandler} maxLength={4} placeholder="Cvv2" type="text" className="h-12 w-2/4 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" /></div>
-            <div className="flex justify-between items-center mb-5">
-                <span>Expiry Date: </span>
-                <div className="w-2/4 flex justify-between items-center">
-                    <input maxLength={2} placeholder="Year" type="text" onBlur={dateYearHandler} onChange={yearHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12" />
-                    <span className="text-2xl"> / </span>
-                    <input maxLength={2} placeholder="Month" type="text" onBlur={dateMonthHandler} onChange={monthHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12" />
+            <form action="" onSubmit={clearInputs}>
+                <input maxLength={20} placeholder="Card Name" type="text" onChange={cardNameHandler} onKeyDown={nameHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
+                <div className="flex justify-center items-center mb-5 relative">
+                    <input maxLength={16} placeholder="Card Number" type="text" onChange={valueNumberHandler} onKeyDown={cardNumberHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+                    {imgCard && <img className="rounded-full absolute right-2 w-9 border-2" src={imgCard} alt="" />}
                 </div>
-            </div>
-            <input maxLength={10} placeholder="Amount" type="text" onChange={amountHandler} onKeyDown={cardNumberHandler} className="w-full h-12 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
-            <button onClick={() => disPatch(addNewCard(addCardObj))} className="w-full h-12 mt-5 bg-blue-700 rounded-lg text-white font-medium p-2">ADD CARD</button>
+                <div className="flex justify-between items-center mb-5"><span>Cvv2 Number: </span><input onChange={cvvHandler} onKeyDown={cardNumberHandler} maxLength={4} placeholder="Cvv2" type="text" className="h-12 w-2/4 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" /></div>
+                <div className="flex justify-between items-center mb-5">
+                    <span>Expiry Date: </span>
+                    <div className="w-2/4 flex justify-between items-center">
+                        <input maxLength={2} placeholder="Year" type="text" onBlur={dateYearHandler} onChange={yearHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12" />
+                        <span className="text-2xl"> / </span>
+                        <input maxLength={2} placeholder="Month" type="text" onBlur={dateMonthHandler} onChange={monthHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12" />
+                    </div>
+                </div>
+                <input maxLength={10} placeholder="Amount" type="text" onChange={amountHandler} onKeyDown={cardNumberHandler} className="w-full h-12 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+                <button onClick={() => disPatch(addNewCard(addCardObj))} className="w-full h-12 mt-5 bg-blue-700 rounded-lg text-white font-medium p-2">ADD CARD</button>
+            </form>
         </div>
     )
 }

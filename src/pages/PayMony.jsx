@@ -51,15 +51,15 @@ function PayMony() {
 
   const options = { timeZone: "Asia/Tehran" };
 
- const formattedDate = now.toLocaleDateString("fa-IR",{
-  ...options,
-   hour: 'numeric',
-   minute: 'numeric',
-   hour12: false,
-});
+  const formattedDate = now.toLocaleDateString("fa-IR", {
+    ...options,
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
 
 
-const thisTime = formattedDate
+  const thisTime = formattedDate
 
   let payMonyObj
   if (sendedCard) {
@@ -75,23 +75,42 @@ const thisTime = formattedDate
     }
   }
 
+  const clearInputs = (e) => {
+    console.log('hi');
+    setNumberDes('')
+    setAmountDes('')
+    seImgDes('')
+  }
+
+  const formHandler = (e) => {
+    e.preventDefault()
+    e.target[2].value = ''
+    e.target[3].value = ''
+    e.target[4].value = ''
+  }
+
 
   if (sendedCard) {
     return (
       <div className="p-10 w-9/12 h-4/5 flex flex-col justify-end">
         <MinuseTime />
-        <input placeholder="Card Name" value={sendedCard.nameCard} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
-        <div className="relative flex items-center mb-5">
-          <input placeholder="Card Number" value={sendedCard.numberCard} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
-          <img className="rounded-full absolute right-2 w-9 border-2" src={sendedCard.imgCard} alt="Bank Icon" />
-        </div>
-        <div className="relative flex items-center mb-5">
-          <input placeholder="Card Number Destination" type="text" maxLength={16} onKeyDown={DestinationHandler} onChange={NumberDestinationHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
-          {imgrDes && <img className="rounded-full absolute right-2 w-9 border-2" src={imgrDes} alt="Bank Icon" />}
-        </div>
-        <input placeholder="Password" type="password" maxLength={10} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
-        <input placeholder="Amount Destination" maxLength={10} onChange={amountPayDesHandler} type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
-        <button onClick={() => disPatch(payMonyHandler(payMonyObj))} className="w-full h-12 bg-blue-700 rounded-lg text-white font-medium p-2">Pay Money</button>
+        <form action="" onSubmit={formHandler}>
+          <input placeholder="Card Name" value={sendedCard.nameCard} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
+          <div className="relative flex items-center mb-5">
+            <input placeholder="Card Number" value={sendedCard.numberCard} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+            <img className="rounded-full absolute right-2 w-9 border-2" src={sendedCard.imgCard} alt="Bank Icon" />
+          </div>
+          <div className="relative flex items-center mb-5">
+            <input placeholder="Card Number Destination" type="text" maxLength={16} onKeyDown={DestinationHandler} onChange={NumberDestinationHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+            {imgrDes && <img className="rounded-full absolute right-2 w-9 border-2" src={imgrDes} alt="Bank Icon" />}
+          </div>
+          <input placeholder="Password" type="password" maxLength={10} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
+          <input placeholder="Amount Destination" maxLength={10} onChange={amountPayDesHandler} type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
+          <button onClick={() => {
+            disPatch(payMonyHandler(payMonyObj))
+            clearInputs()
+          }} className="w-full h-12 bg-blue-700 rounded-lg text-white font-medium p-2">Pay Money</button>
+        </form>
       </div>
     )
   } else {
