@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import IranClock from "../utils/IranClock"
+import NavLinks from "../utils/NavLinks"
 
 export default function History() {
 
@@ -28,8 +29,11 @@ export default function History() {
 
     if (historyPay.length != 0) {
         return (
-            <div className="p-10 w-9/12 h-4/5 overflow-x-auto">
+            <div className="p-10 w-9/12 h-5/6 overflow-x-auto">
+            <div className="flex justify-between items-end mb-5">
+                <NavLinks />
                 <IranClock />
+            </div>
                 <div className="shadow-inner  p-3">
                     {showHistory}
                 </div>
@@ -37,7 +41,8 @@ export default function History() {
         )
     } else {
         return (
-            <div className="m-1 p-10 w-9/12 h-4/5 flex flex-col justify-center items-center text-7xl font-bold drop-shadow-2xl shadow-sm">
+            <div className="p-10 w-9/12 h-5/6 flex flex-col justify-start items-center text-7xl font-bold drop-shadow-2xl shadow-sm">
+                <div className="mb-5 self-start"><NavLinks /></div>
                 <IranClock />
                 <p>No History</p>
             </div>

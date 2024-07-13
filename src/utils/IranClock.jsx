@@ -25,7 +25,7 @@ const IranClock = () => {
   const iranTime = useIranTime();
 
   return (
-    <div className='flex justify-end gap-1 mb-5'>
+    <div className='flex justify-end gap-1 items-center'>
       <p className='bg-slate-500 rounded-sm p-1 text-white'>{iranTime.hour}</p>
       <span className='text-xl'>:</span>
       <p className='bg-slate-500 rounded-sm p-1 text-white'>{iranTime.minute}</p>

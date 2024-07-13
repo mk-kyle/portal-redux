@@ -2,6 +2,7 @@ import { useState } from "react";
 import IranClock from "../utils/IranClock";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewCard } from "../redux/addCardSlice";
+import NavLinks from "../utils/NavLinks";
 
 
 function AddCard() {
@@ -110,6 +111,7 @@ function AddCard() {
     const addCardObj = {
         id: Math.random() * 1000,
         nameCard: nameCard,
+        showNumberCard: numberCard,
         numberCard: numberCard,
         cvvCard: cvvCard,
         yearCard: yearCard,
@@ -129,26 +131,43 @@ function AddCard() {
     }
 
 
-
     return (
-        <div className="p-10 w-9/12 h-4/5 flex flex-col justify-end">
-            <IranClock />
+        <div className="p-10 w-9/12 h-5/6 flex flex-col justify-start">
+            <div className="flex justify-between items-end mb-5">
+                <NavLinks />
+                <IranClock />
+            </div>
             <form action="" onSubmit={clearInputs}>
                 <input maxLength={20} placeholder="Card Name" type="text" onChange={cardNameHandler} onKeyDown={nameHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
                 <div className="flex justify-center items-center mb-5 relative">
                     <input maxLength={16} placeholder="Card Number" type="text" onChange={valueNumberHandler} onKeyDown={cardNumberHandler} className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
                     {imgCard && <img className="rounded-full absolute right-2 w-9 border-2" src={imgCard} alt="" />}
                 </div>
-                <div className="flex justify-between items-center mb-5"><span>Cvv2 Number: </span><input onChange={cvvHandler} onKeyDown={cardNumberHandler} maxLength={4} placeholder="Cvv2" type="text" className="h-12 w-2/4 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" /></div>
                 <div className="flex justify-between items-center mb-5">
-                    <span>Expiry Date: </span>
+                    <div>
+                        <span>Cvv2 Number: </span>
+                        <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing?</p>
+                    </div>
+                    <input onChange={cvvHandler} onKeyDown={cardNumberHandler} maxLength={4} placeholder="Cvv2" type="text" className="h-12 w-2/4 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] text-center" />
+                </div>
+                <div className="flex justify-between items-center mb-5">
+                    <div>
+                        <div>Expiry Date: </div>
+                        <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing?</p>
+                    </div>
                     <div className="w-2/4 flex justify-between items-center">
-                        <input maxLength={2} placeholder="Year" type="text" onBlur={dateYearHandler} onChange={yearHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12" />
+                        <input maxLength={2} placeholder="Year" type="text" onBlur={dateYearHandler} onChange={yearHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12 text-center" />
                         <span className="text-2xl"> / </span>
-                        <input maxLength={2} placeholder="Month" type="text" onBlur={dateMonthHandler} onChange={monthHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12" />
+                        <input maxLength={2} placeholder="Month" type="text" onBlur={dateMonthHandler} onChange={monthHandler} onKeyDown={numberHandler} className="border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] h-12 text-center" />
                     </div>
                 </div>
-                <input maxLength={10} placeholder="Amount" type="text" onChange={amountHandler} onKeyDown={cardNumberHandler} className="w-full h-12 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+                <div className="flex justify-between">
+                    <div>
+                        <div>Amount:</div>
+                        <p className="text-sm text-gray-600 ">Lorem ipsum dolor sit amet consectetur adipisicing?</p>
+                    </div>
+                    <input maxLength={10} placeholder="Amount" type="text" onChange={amountHandler} onKeyDown={cardNumberHandler} className="w-2/4 h-12 border-2 rounded-lg pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+                </div>
                 <button onClick={() => disPatch(addNewCard(addCardObj))} className="w-full h-12 mt-5 bg-blue-700 rounded-lg text-white font-medium p-2">ADD CARD</button>
             </form>
         </div>

@@ -154,7 +154,8 @@ export const addCardSlice = createSlice({
       if (
         actions.payload.imgrDes &&
         actions.payload.numberDes.length == 16 &&
-        newMony > 0
+        newMony > 0 &&
+        actions.payload.amounteDes
       ) {
         state.newCard.map((card) => {
           if (card.id == actions.payload.sendedCardId) {
