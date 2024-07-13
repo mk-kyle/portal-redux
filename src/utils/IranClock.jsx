@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const useIranTime = (
-) => {
+const useIranTime = () => {
   const [iranTime, setIranTime] = useState({ hour: "", minute: "" });
 
   useEffect(() => {
@@ -22,8 +21,7 @@ const useIranTime = (
   return iranTime;
 };
 
-const IranClock = (
-) => {
+const IranClock = () => {
   const iranTime = useIranTime();
 
   return (
