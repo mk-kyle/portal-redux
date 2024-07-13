@@ -15,16 +15,18 @@ function ShowCard() {
         const showNumberCard = numberCard.join(' ')
         return (
             <div>
-                <div key={`cardContainer${e.id}`} onClick={() => dispatch(sendCardToPayHandler(sendCardObj))} className="w-52 mx-auto p-5 border-2 rounded-lg h-72 relative -top-[120px] bg-white ">
+                <div key={`cardContainer${e.id}`} onClick={() => dispatch(sendCardToPayHandler(sendCardObj))} className="w-52 mx-auto p-5 border-2 rounded-lg h-72 relative -top-[120px] bg-white flex flex-col justify-between">
                     <div className="flex justify-between mb-4">
                         <img className="rotate-90 w-9" src={cardIcon} alt="" />
                         <img key={`image${e.id}`} className="rounded-full right-2 w-9 border-2 " src={e.imgCard} alt="" />
                     </div>
-                    <p>Card Name:</p>
-                    <div key={`cardName2${e.id}`} className=" rounded-md pl-2 mb-4 flex justify-between items-center">{e.nameCard}
+                    <div>
+                        <div className="font-bold">Card Name:</div>
+                        <div key={`cardName2${e.id}`} className=" rounded-md pl-2 mb-4 flex justify-between items-center">{e.nameCard}
+                        </div>
+                        <div key={`cardNumber1${e.id}`} className=" rounded-md pl-2 font-bold">Card Number:</div>
+                        <div key={`cardNumber2${e.id}`} className=" rounded-md pl-2 mb-4">{showNumberCard}</div>
                     </div>
-                    <div key={`cardNumber1${e.id}`} className=" rounded-md pl-2">Card Number:</div>
-                    <div key={`cardNumber2${e.id}`} className=" rounded-md pl-2 mb-4">{showNumberCard}</div>
                 </div>
                 <div className="w-52 mx-auto p-5 border-2 rounded-lg relative -top-[108px] flex flex-col gap-3">
                     <div className="flex justify-between ">

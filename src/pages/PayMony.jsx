@@ -107,7 +107,12 @@ function PayMony() {
     }
   }
 
-  console.log(MinuseTime);
+  let numberCard
+
+  if (sendedCard) {
+    numberCard = sendedCard.showNumberCard.match(/.{1,4}/g);
+  }
+
 
   if (sendedCard) {
     return (
@@ -119,7 +124,7 @@ function PayMony() {
         <form action="" onSubmit={formHandler}>
           <input placeholder="Card Name" value={sendedCard.nameCard} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
           <div className="relative flex items-center mb-5">
-            <input placeholder="Card Number" value={sendedCard.numberCard} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
+            <input placeholder="Card Number" value={numberCard.join(' ')} readOnly type="text" className="border-2 rounded-lg block w-full h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f]" />
             <img className="rounded-full absolute right-2 w-9 border-2" src={sendedCard.imgCard} alt="Bank Icon" />
           </div>
           <div className=" mb-5 flex justify-between items-center">
@@ -144,7 +149,7 @@ function PayMony() {
               Amount To Pay:
               <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur  elit.</p>
             </div>
-            <input placeholder="Amount Destination" maxLength={10} onChange={amountPayDesHandler} type="text" className="border-2 rounded-lg block w-2/4 h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
+            <input placeholder="Amount Destination" maxLength={10} onKeyDown={DestinationHandler} onChange={amountPayDesHandler} type="text" className="border-2 rounded-lg block w-2/4 h-12 pl-3 outline-none focus:bg-[#0d48a140] focus:border-blue-400 hover:bg-[#0d48a12f] mb-5" />
           </div>
           <button onClick={() => {
             disPatch(payMonyHandler(payMonyObj))
